@@ -1,0 +1,32 @@
+@font-face {
+  font-family: digitalNumber;
+  src: url(font/digital-7.ttf) format("truetype");
+}
+body {
+  width: 90vw;
+  margin: 0 auto;
+}
+body main .digital {
+  border: 1px solid black;
+  margin-bottom: 10px;
+  padding: 10px 10px;
+  text-align: right;
+  font-family: digitalNumber;
+  font-size: 32px;
+  letter-spacing: 6px;
+}
+body main .digital h2 {
+  padding: 0;
+  margin: 0;
+}
+body main #wrap {
+  display: grid;
+  grid-template-areas: "seven eight nine divide" "four five six multiply" "one two three subtract" "dot zero equal add";
+  text-align: center;
+}
+body main #wrap .btn {
+  font-size: 22px;
+  border: 1px solid black;
+  padding: 10px;
+  border-radius: 5px;
+}/*# sourceMappingURL=style.css.map */
