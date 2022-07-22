@@ -14,9 +14,18 @@ body{
             font-family: digitalNumber;
             font-size: 48px;
             letter-spacing: 6px;
-            height: 1em;
+            height: 1.5em;
             overflow: hidden;
-
+            #calcu,#ans{
+                margin: 0;
+                padding: 0;
+            }
+            #calcu{
+                font-size: 0.5em;
+            }
+            #ans{
+                font-size: 1em;
+            }
         }
         #wrap{
             display: grid;

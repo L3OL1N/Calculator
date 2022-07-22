@@ -1,56 +1,72 @@
 const wrapDiv = document.getElementById("wrap");
-const digital = document.getElementById("digital");
-let arrDigital = digital.innerHTML;
+const ansDigital = document.getElementById("ans");
+const calcuDigital = document.getElementById("calcu");
+let arrDigital = ansDigital.innerHTML;
+let arrCalcu = calcuDigital.innerHTML;
 let arrNum = new Array;
 let calCount = 0;
 function display(num){
+    if(num === "=") return ansDigital.innerHTML = arrNum[0];
     if(num.match(/\d|\./) == null) {
         num = "";
     }
     if(arrDigital.match(/^0/) && arrDigital.match(/\./) === null && num.match(/\d/)){
         arrDigital = "";
     }
-    console.log(calCount);
     if(num.match(/\d|\./) != null && calCount === 1 ){
-        arrDigital ="";
-        //digital.innerHTML = "";
     }
     arrDigital += num;
-    // && calCount === 1
-    return digital.innerHTML = arrDigital;
+    return ansDigital.innerHTML = arrDigital;
 }
 function calcu(operator){
     let tem = 0;
     let ans ;
     let num = parseFloat(arrDigital,10);
     arrNum.push(num);
-    
-    if(arrNum.length <= 1 ) return arrDigital ="0";
-    switch(operator){
+    console.log(num);
+    if(arrNum.length === 1 ){
+        arrCalcu = arrNum[0] + operator;
+        return arrDigital ="0";
+    } 
+    if(num === 0 && operator === "/") return alert("ERROR");
+    switch(arrCalcu.match(/\D$/)[0]){
         case "+" :
             ans = arrNum[0]+arrNum[1];
             arrDigital = (ans).toString();
             arrNum.push(ans);
             break;
         case "-" :
-            console.log("-");
+            ans = arrNum[0]-arrNum[1];
+            arrDigital = (ans).toString();
+            arrNum.push(ans);
             break;
         case "x" :
-            console.log("x");
+            ans = arrNum[0]*arrNum[1];
+            arrDigital = (ans).toString();
+            arrNum.push(ans);
             break;
         case "/" :
-            console.log("/");
+            ans = arrNum[0]/arrNum[1];
+            arrDigital = (ans).toString();
+            arrNum.push(ans);
             break;
         case "=" :
-            digital.innerHTML = arrDigital;
+            ansDigital.innerHTML = arrDigital;
             console.log("=");
             break;
         default:
             console.log(`ERROR`);
     }
     if(arrNum.length > 2) {
-        arrNum.shift();
+        arrNum.splice(0,2);
     }
+    if(operator === "="){
+        arrCalcu = "";
+        return;
+    }
+    arrCalcu = ans + operator;
+
+    console.log(arrCalcu);
     return ;
 }
 
@@ -61,12 +77,13 @@ function btnclick(e){
 
     if(btnValue.match(reg) === null){
         calcu(btnValue);
-        calCount ++;
+        //arrCalcu = arrNum[0];
+        arrDigital ="0"
     }
     if(arrDigital.match(/\./) != null && btnValue.match(/\./)!= null) return;
     display(btnValue);
-    //console.log(arrNum);
-    calCount = 0 ;
+    console.log(arrNum);
+    calcuDigital.innerHTML = arrCalcu;
 }
 //Add event listener
 for(let i = 0; i < wrapDiv.childElementCount; i++){
