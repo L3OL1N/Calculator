@@ -2,13 +2,19 @@
     font-family: digitalNumber;
     src: url(font/digital-7.ttf) format('truetype');
 }
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap');
 body{
-    width: 90vw;
+    width: 40vw;
     margin: 0 auto;
+    background: #aec378;
+    color: white;
     main{
+        background-color: rgb(27, 27, 27);
+        padding: 15px;
+
         #digital{
-            border: 1px solid black;
-            margin-bottom: 10px;
+            border: 1px solid white;
+            margin-bottom: 20px;
             padding: 10px 10px;
             text-align: right;
             font-family: digitalNumber;
@@ -35,12 +41,22 @@ body{
                                 "one two three subtract"
                                 "dot zero equal add" ;
             text-align: center;
+            gap:2px;
             .btn{
+                font-family: 'Open Sans', sans-serif;
                 font-size: 22px;
-                border: 1px solid black;
-                padding: 10px;
+                border: 1px solid white;
+                padding: 15px;
                 border-radius: 5px;
                 cursor: pointer;
+                &:hover{
+                    transition: 0.3s ease-in-out;
+                    background-color: lightgray;
+                }
+                &:active{
+                    transition: none;
+                    background-color: gray;
+                }
             }
         }
     }

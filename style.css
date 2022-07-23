@@ -1,14 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap");
 @font-face {
   font-family: digitalNumber;
   src: url(font/digital-7.ttf) format("truetype");
 }
 body {
-  width: 90vw;
+  width: 40vw;
   margin: 0 auto;
+  background: #aec378;
+  color: white;
+}
+body main {
+  background-color: rgb(27, 27, 27);
+  padding: 15px;
 }
 body main #digital {
-  border: 1px solid black;
-  margin-bottom: 10px;
+  border: 1px solid white;
+  margin-bottom: 20px;
   padding: 10px 10px;
   text-align: right;
   font-family: digitalNumber;
@@ -31,11 +38,21 @@ body main #wrap {
   display: grid;
   grid-template-areas: "AC AC backspace backspace" "seven eight nine divide" "four five six multiply" "one two three subtract" "dot zero equal add";
   text-align: center;
+  gap: 2px;
 }
 body main #wrap .btn {
+  font-family: "Open Sans", sans-serif;
   font-size: 22px;
-  border: 1px solid black;
-  padding: 10px;
+  border: 1px solid white;
+  padding: 15px;
   border-radius: 5px;
   cursor: pointer;
+}
+body main #wrap .btn:hover {
+  transition: 0.3s ease-in-out;
+  background-color: lightgray;
+}
+body main #wrap .btn:active {
+  transition: none;
+  background-color: gray;
 }/*# sourceMappingURL=style.css.map */

@@ -21,15 +21,12 @@ function display(num){
         return ;
     }
     // backspace
-    if(num.match(`${backspace}`)) {
-        arrDigital = arrDigital.substring(0,arrDigital.length-1);
-    }
+    if(num.match(`${backspace}`)) arrDigital = arrDigital.substring(0,arrDigital.length-1);
     // not 0-9 & dot
     if(num.match(/\d|\./) === null) num = "";
     // 0 -> 0-9
-    if(arrDigital.match(/^0/) && arrDigital.match(/\./) === null && num.match(/\d/)){
-        arrDigital = "";
-    }
+    if(arrDigital.match(/^0/) && arrDigital.match(/\./) === null && num.match(/\d/)) arrDigital = "";
+    
     arrDigital += num;
     return ansDigital.innerHTML = arrDigital;
 }
@@ -71,7 +68,7 @@ function calcu(operator){
             arrNum.push(ans);
             break;
         default:
-            console.log(`ERROR`);
+            alert(`ERROR`);
     }
     if(arrNum.length > 2) {
         arrNum.splice(0,2);
@@ -81,13 +78,10 @@ function calcu(operator){
         return;
     }
     arrCalcu = ans + operator;
-
-    console.log(arrCalcu);
     return ;
 }
 
 //Collection
-let count = 1;
 function btnclick(e){
     let btnValue = e.target.innerHTML;
     let reg = /\d|\.|►/;
@@ -101,8 +95,6 @@ function btnclick(e){
     // dot only once
     if(arrDigital.match(/\./) && btnValue.match(/\./)) return;
     display(btnValue);
-    console.log(`count : ${count++}`);
-    console.log(arrNum);
     calcuDigital.innerHTML = arrCalcu;
 }
 //Add event listener
@@ -111,3 +103,29 @@ for(let i = 0; i < wrapDiv.childElementCount; i++){
     wrapDiv.children[i].style = "grid-area : "+id;
     wrapDiv.children[i].addEventListener("click",btnclick);
 };
+// keyboard
+function keyPress(key){
+    let btnValue = key;
+    let reg = /\d|\.|►/;
+    if(btnValue.match(/\=/) && arrNum.length <1) return;
+    // not 0-9
+    if(btnValue.match(reg) === null){
+        if(arrDigital === "") return;
+        calcu(btnValue);
+        arrDigital ="0"
+    }
+    // dot only once
+    if(arrDigital.match(/\./) && btnValue.match(/\./)) return;
+    display(btnValue);
+    calcuDigital.innerHTML = arrCalcu;
+}
+function transKey(e){
+    let str = "";
+    asc = e.keyCode;
+    key = String.fromCharCode(asc);
+    if(key === "*") key = "x";
+    if(asc === 13) key = "=";
+    str  = key;
+    keyPress(str);
+}
+document.onkeypress=transKey;
